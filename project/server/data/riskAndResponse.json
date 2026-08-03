@@ -1,11 +1,41 @@
 {
   "riskMatrix": [
-    { "risk": "Vendor credential phishing", "likelihood": 5, "impact": 5, "vulnRef": "V-01" },
-    { "risk": "Lateral movement via flat network", "likelihood": 4, "impact": 5, "vulnRef": "V-02" },
-    { "risk": "Single-factor auth compromise", "likelihood": 4, "impact": 4, "vulnRef": "V-03" },
-    { "risk": "Delayed alert triage", "likelihood": 3, "impact": 5, "vulnRef": "V-04" },
-    { "risk": "POS memory scraping", "likelihood": 3, "impact": 5, "vulnRef": "V-05" },
-    { "risk": "Unmonitored data exfiltration", "likelihood": 3, "impact": 4, "vulnRef": "V-06" }
+    {
+      "risk": "Vendor credential phishing",
+      "likelihood": 5,
+      "impact": 5,
+      "vulnRef": "V-01"
+    },
+    {
+      "risk": "Lateral movement via flat network",
+      "likelihood": 4,
+      "impact": 5,
+      "vulnRef": "V-02"
+    },
+    {
+      "risk": "Single-factor auth compromise",
+      "likelihood": 4,
+      "impact": 4,
+      "vulnRef": "V-03"
+    },
+    {
+      "risk": "Delayed alert triage",
+      "likelihood": 3,
+      "impact": 5,
+      "vulnRef": "V-04"
+    },
+    {
+      "risk": "POS memory scraping",
+      "likelihood": 3,
+      "impact": 5,
+      "vulnRef": "V-05"
+    },
+    {
+      "risk": "Unmonitored data exfiltration",
+      "likelihood": 3,
+      "impact": 4,
+      "vulnRef": "V-06"
+    }
   ],
   "incidentResponsePlan": [
     {
@@ -95,6 +125,63 @@
       "Requirement 10 (monitoring & logging): alerts existed but the response process failed to act on them within a reasonable window.",
       "Requirement 3 (protect stored cardholder data): plaintext card data in POS memory, even briefly, was the exact gap the RAM scraper exploited."
     ],
-    "regulatoryAftermath": "Target paid a $18.5 million multistate settlement (2017) and separate settlements with payment networks, and testified before the U.S. Senate Commerce Committee, which used the case to push broader adoption of EMV chip cards in the US."
+    "regulatoryAftermath": "Target paid a $18.5 million multistate settlement (2017) and separate settlements with payment networks, and testified before the U.S. Senate Commerce Committee, which used the case to push broader adoption of EMV chip cards in the US.",
+    "requirementStatus": [
+      {
+        "req": "Req 1",
+        "title": "Install & maintain network security controls",
+        "status": "Gap"
+      },
+      {
+        "req": "Req 2",
+        "title": "Apply secure configurations to system components",
+        "status": "Partial"
+      },
+      {
+        "req": "Req 3",
+        "title": "Protect stored cardholder data",
+        "status": "Gap"
+      },
+      {
+        "req": "Req 4",
+        "title": "Encrypt cardholder data in transit",
+        "status": "Compliant"
+      },
+      {
+        "req": "Req 6",
+        "title": "Develop & maintain secure systems/software",
+        "status": "Partial"
+      },
+      {
+        "req": "Req 7",
+        "title": "Restrict access by business need-to-know",
+        "status": "Partial"
+      },
+      {
+        "req": "Req 8",
+        "title": "Identify users & authenticate access",
+        "status": "Gap"
+      },
+      {
+        "req": "Req 9",
+        "title": "Restrict physical access to cardholder data",
+        "status": "Compliant"
+      },
+      {
+        "req": "Req 10",
+        "title": "Log and monitor all access to system components",
+        "status": "Gap"
+      },
+      {
+        "req": "Req 11",
+        "title": "Test security of systems/networks regularly",
+        "status": "Partial"
+      },
+      {
+        "req": "Req 12",
+        "title": "Support information security with policy",
+        "status": "Compliant"
+      }
+    ]
   }
 }

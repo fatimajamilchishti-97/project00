@@ -181,6 +181,57 @@ a { color: inherit; text-decoration: none; }
 .badge.high { background: rgba(242,166,90,0.15); color: var(--amber); border: 1px solid var(--amber); }
 .badge.medium { background: rgba(63,193,201,0.15); color: var(--teal); border: 1px solid var(--teal); }
 
+/* Clickable remediation-status badge (real backend PATCH on click) */
+.status-badge {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: filter 0.15s ease;
+  user-select: none;
+}
+.status-badge:hover { filter: brightness(1.2); }
+.status-badge.open { background: rgba(228,87,46,0.15); color: var(--red); border: 1px solid var(--red); }
+.status-badge.in-progress { background: rgba(242,166,90,0.15); color: var(--amber); border: 1px solid var(--amber); }
+.status-badge.resolved { background: rgba(111,207,151,0.15); color: var(--green); border: 1px solid var(--green); }
+
+/* Chart grid for Overview / compliance summaries */
+.chart-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 14px;
+}
+
+/* Compliance requirement grid (DataProtection page) */
+.compliance-grid { display: grid; gap: 8px; margin-top: 4px; }
+.compliance-row {
+  display: grid;
+  grid-template-columns: 60px 1fr 110px;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 10px;
+  border: 1px solid var(--hairline);
+  border-radius: 6px;
+  background: var(--panel-raised);
+}
+.compliance-row .req-id { font-family: var(--font-mono); font-size: 12px; color: var(--text-dim); }
+.compliance-row .req-title { font-size: 13.5px; color: var(--text); }
+.compliance-chip {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  text-align: center;
+}
+.compliance-chip.compliant { background: rgba(111,207,151,0.15); color: var(--green); border: 1px solid var(--green); }
+.compliance-chip.partial { background: rgba(242,166,90,0.15); color: var(--amber); border: 1px solid var(--amber); }
+.compliance-chip.gap { background: rgba(228,87,46,0.15); color: var(--red); border: 1px solid var(--red); }
+
 table { width: 100%; border-collapse: collapse; font-size: 14px; }
 th { text-align: left; font-family: var(--font-mono); font-size: 11.5px; text-transform: uppercase; color: var(--text-dim); padding: 8px 10px; border-bottom: 1px solid var(--hairline); }
 td { padding: 10px; border-bottom: 1px solid var(--hairline); vertical-align: top; }

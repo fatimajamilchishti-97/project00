@@ -5,7 +5,8 @@
     "area": "Vendor Management",
     "severity": "Critical",
     "description": "Fazio Mechanical had no enterprise-grade endpoint protection and reportedly used only a free antivirus tool, yet held credentials into a portal connected to Target's internal network.",
-    "cwe": "CWE-1059 (Insufficient Technical Documentation) / Vendor Risk"
+    "cwe": "CWE-1059 (Insufficient Technical Documentation) / Vendor Risk",
+    "status": "Resolved"
   },
   {
     "id": "V-02",
@@ -13,7 +14,8 @@
     "area": "Network Architecture",
     "severity": "Critical",
     "description": "The vendor portal, corporate network, and POS/cardholder data environment were not adequately isolated (flat or weakly segmented network), letting attackers pivot from a billing system into store POS systems.",
-    "cwe": "CWE-284 (Improper Access Control)"
+    "cwe": "CWE-284 (Improper Access Control)",
+    "status": "Resolved"
   },
   {
     "id": "V-03",
@@ -21,7 +23,8 @@
     "area": "Identity & Access Management",
     "severity": "High",
     "description": "Single-factor (password-only) authentication protected an externally reachable vendor portal, so stolen credentials alone were sufficient for access.",
-    "cwe": "CWE-308 (Use of Single-Factor Authentication)"
+    "cwe": "CWE-308 (Use of Single-Factor Authentication)",
+    "status": "Resolved"
   },
   {
     "id": "V-04",
@@ -29,7 +32,8 @@
     "area": "Security Operations / Monitoring",
     "severity": "High",
     "description": "FireEye alerts describing the malware activity were generated during the intrusion window but were not escalated or investigated in time, despite the tooling functioning as intended.",
-    "cwe": "CWE-778 (Insufficient Logging) / Process Gap"
+    "cwe": "CWE-778 (Insufficient Logging) / Process Gap",
+    "status": "In Progress"
   },
   {
     "id": "V-05",
@@ -37,7 +41,8 @@
     "area": "Data Protection",
     "severity": "Critical",
     "description": "Card track data existed briefly in plaintext in POS system memory before encryption, which the RAM-scraping malware was specifically built to exploit.",
-    "cwe": "CWE-311 (Missing Encryption of Sensitive Data)"
+    "cwe": "CWE-311 (Missing Encryption of Sensitive Data)",
+    "status": "Resolved"
   },
   {
     "id": "V-06",
@@ -45,6 +50,7 @@
     "area": "Network Architecture",
     "severity": "Medium",
     "description": "Large, unusual outbound transfers to external FTP servers were not flagged or blocked, enabling exfiltration to proceed over multiple days.",
-    "cwe": "CWE-200 (Exposure of Sensitive Information) / Egress Filtering Gap"
+    "cwe": "CWE-200 (Exposure of Sensitive Information) / Egress Filtering Gap",
+    "status": "Resolved"
   }
 ]

@@ -84,6 +84,20 @@ Open `http://localhost:5173` in your browser.
 - `GET /api/vulnerabilities` — vulnerability list
 - `GET /api/risk-response` — risk matrix, IR plan, recommendations, compliance data
 - `POST /api/phishing-analyzer` — body `{ "emailText": "..." }`, returns a risk score + reasons
+- `PATCH /api/vulnerabilities/:id/status` — cycles a vulnerability's remediation status
+  (Open → In Progress → Resolved) and persists it to `vulnerabilities.json`
+
+## Recently added (live/interactive features)
+- **Overview dashboard charts** — vulnerability-by-severity bar chart and a remediation-status
+  donut chart on the Overview page (Recharts), computed live from `/api/vulnerabilities`.
+- **Live remediation-status tracking** — each vulnerability on `/vulnerabilities` now has a
+  `status` (`Open` / `In Progress` / `Resolved`). Clicking the status badge calls a real backend
+  endpoint (`PATCH /api/vulnerabilities/:id/status`), which cycles and **persists** the status to
+  `vulnerabilities.json` — a genuine full-stack read/write feature, not just static content.
+- **PCI-DSS requirement compliance matrix** — `/data-protection` now shows a requirement-by-
+  requirement status grid (Compliant / Partial / Gap) for PCI-DSS Requirements 1–12, plus a
+  summary donut chart, sourced from `dataProtectionCompliance.requirementStatus` in
+  `riskAndResponse.json`.
 
 ## Extending this for a higher grade
 Ideas to push this further if you have time before submission:

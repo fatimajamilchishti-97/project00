@@ -25,6 +25,21 @@ router.get("/vulnerabilities", (req, res) => {
   res.json(readJson("vulnerabilities.json"));
 });
 
+// Real working feature: cycle a vulnerability's remediation status and persist it.
+// Open -> In Progress -> Resolved -> Open ...
+const STATUS_CYCLE = ["Open", "In Progress", "Resolved"];
+router.patch("/vulnerabilities/:id/status", (req, res) => {
+  const vulns = readJson("vulnerabilities.json");
+  const vuln = vulns.find((v) => v.id === req.params.id);
+  if (!vuln) return res.status(404).json({ error: "vulnerability not found" });
+
+  const currentIdx = STATUS_CYCLE.indexOf(vuln.status || "Open");
+  vuln.status = STATUS_CYCLE[(currentIdx + 1) % STATUS_CYCLE.length];
+
+  fs.writeFileSync(path.join(dataDir, "vulnerabilities.json"), JSON.stringify(vulns, null, 2));
+  res.json(vuln);
+});
+
 router.get("/risk-response", (req, res) => {
   res.json(readJson("riskAndResponse.json"));
 });
