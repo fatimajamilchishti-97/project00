@@ -1,0 +1,58 @@
+[
+  {
+    "stage": "Reconnaissance",
+    "date": "Sep - Oct 2013",
+    "title": "Vendor identification",
+    "description": "Attackers identified Fazio Mechanical Services, a small HVAC contractor with legitimate remote-access credentials into Target's vendor portal, as a low-security entry point into a high-value target.",
+    "category": "recon"
+  },
+  {
+    "stage": "Initial Access",
+    "date": "Sep 2013 (approx.)",
+    "title": "Phishing email against the vendor",
+    "description": "Employees at Fazio Mechanical received a phishing email carrying the Citadel banking-trojan (a variant of the Zeus malware family). Opening the attachment/link installed a credential-stealing trojan on Fazio's systems, silently harvesting the vendor's Ariba portal login.",
+    "category": "phishing"
+  },
+  {
+    "stage": "Foothold",
+    "date": "Nov 12, 2013",
+    "title": "Credential theft & portal access",
+    "description": "Attackers used the stolen Fazio credentials to log into Target's vendor portal. The portal was intended only for billing/contract submission, but weak isolation let attackers pivot toward the broader corporate network.",
+    "category": "credential"
+  },
+  {
+    "stage": "Lateral Movement",
+    "date": "Nov 15 - 27, 2013",
+    "title": "Network pivoting",
+    "description": "Attackers moved from the vendor portal into Target's internal Windows network, escalating privileges and mapping the path to store POS systems. Insufficient network segmentation meant a vendor-billing system and the cardholder data environment were reachable from the same effective trust zone.",
+    "category": "lateral"
+  },
+  {
+    "stage": "Malware Deployment",
+    "date": "Nov 27, 2013",
+    "title": "POS malware installation",
+    "description": "A custom RAM-scraping malware variant (related to the BlackPOS/Kaptoxa family) was deployed to POS terminals across nearly all US stores, designed to capture card track data directly from device memory before encryption.",
+    "category": "malware"
+  },
+  {
+    "stage": "Data Collection & Exfiltration",
+    "date": "Nov 27 - Dec 15, 2013",
+    "title": "Card data staged and exfiltrated",
+    "description": "Stolen card data was periodically collected from POS terminals to an internal staging server, then exfiltrated in batches to external FTP servers, including a compromised server in Russia, via scheduled transfers designed to blend into normal traffic.",
+    "category": "exfiltration"
+  },
+  {
+    "stage": "Detection Failure",
+    "date": "Nov 30 - Dec 2, 2013",
+    "title": "Alerts raised, not escalated",
+    "description": "Target's FireEye monitoring system generated malware alerts during the intrusion window. The alerts were logged but not escalated or acted on quickly enough to interrupt the attack before mass card data theft occurred.",
+    "category": "detection"
+  },
+  {
+    "stage": "Public Disclosure",
+    "date": "Dec 19, 2013",
+    "title": "Breach confirmed publicly",
+    "description": "After journalist Brian Krebs reported unusual patterns of fraudulent card activity tied to Target purchases, Target confirmed the breach publicly on December 19, 2013, roughly three weeks after the intrusion began.",
+    "category": "disclosure"
+  }
+]

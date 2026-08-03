@@ -1,0 +1,100 @@
+{
+  "riskMatrix": [
+    { "risk": "Vendor credential phishing", "likelihood": 5, "impact": 5, "vulnRef": "V-01" },
+    { "risk": "Lateral movement via flat network", "likelihood": 4, "impact": 5, "vulnRef": "V-02" },
+    { "risk": "Single-factor auth compromise", "likelihood": 4, "impact": 4, "vulnRef": "V-03" },
+    { "risk": "Delayed alert triage", "likelihood": 3, "impact": 5, "vulnRef": "V-04" },
+    { "risk": "POS memory scraping", "likelihood": 3, "impact": 5, "vulnRef": "V-05" },
+    { "risk": "Unmonitored data exfiltration", "likelihood": 3, "impact": 4, "vulnRef": "V-06" }
+  ],
+  "incidentResponsePlan": [
+    {
+      "phase": "1. Preparation",
+      "actions": [
+        "Maintain an up-to-date asset inventory covering POS systems, vendor access points, and network segments.",
+        "Define and rehearse an incident response playbook specific to payment-card/PCI-DSS scope.",
+        "Establish a 24/7 triage rotation with clear escalation thresholds for SOC alerts (the actual gap in the Target case)."
+      ]
+    },
+    {
+      "phase": "2. Identification",
+      "actions": [
+        "Treat all FireEye/EDR malware alerts on systems touching the cardholder data environment as high-priority by default.",
+        "Correlate vendor-portal login anomalies (new device, unusual hours, atypical geography) with downstream network activity.",
+        "Deploy egress-traffic anomaly detection to flag large or irregular outbound transfers."
+      ]
+    },
+    {
+      "phase": "3. Containment",
+      "actions": [
+        "Immediately disable compromised vendor credentials and force portal-wide password resets.",
+        "Isolate affected POS terminals and the intermediate staging server from the network.",
+        "Block identified command-and-control and exfiltration endpoints at the firewall/DNS layer."
+      ]
+    },
+    {
+      "phase": "4. Eradication",
+      "actions": [
+        "Remove RAM-scraping malware from all POS endpoints and re-image affected systems from known-good baselines.",
+        "Patch or replace the vendor-portal access path that enabled lateral movement.",
+        "Rotate all credentials and certificates that may have been exposed during the intrusion."
+      ]
+    },
+    {
+      "phase": "5. Recovery",
+      "actions": [
+        "Restore POS operations in stages with enhanced monitoring on newly re-imaged systems.",
+        "Validate PCI-DSS compliance of the cardholder data environment before resuming full card processing.",
+        "Continue heightened monitoring for 90+ days post-incident to catch any residual persistence."
+      ]
+    },
+    {
+      "phase": "6. Lessons Learned",
+      "actions": [
+        "Conduct a formal post-incident review examining why existing alerts were not escalated.",
+        "Update vendor security requirements (minimum endpoint protection standards, access scoping).",
+        "Report findings to executive leadership and the board's audit/risk committee, with a public disclosure plan."
+      ]
+    }
+  ],
+  "recommendations": [
+    {
+      "title": "Enforce least-privilege, segmented vendor access",
+      "detail": "Vendor portal access should be scoped to only the specific systems a vendor needs (e.g., billing), placed in its own network segment with no direct path to the cardholder data environment."
+    },
+    {
+      "title": "Mandate multi-factor authentication for all remote/vendor access",
+      "detail": "MFA on every externally reachable login (vendor portals, VPNs, admin consoles) removes stolen-password-only access as a viable attack path."
+    },
+    {
+      "title": "Formalize a 24/7 alert-triage SLA",
+      "detail": "Define maximum response times for security alerts touching regulated data environments, with automatic escalation if not acknowledged in time - directly addressing the FireEye-alert failure."
+    },
+    {
+      "title": "Adopt point-to-point/end-to-end encryption for card data",
+      "detail": "Encrypt card data at the point of swipe so it never exists in plaintext in POS memory, eliminating the RAM-scraping attack surface."
+    },
+    {
+      "title": "Deploy network segmentation with explicit deny-by-default rules",
+      "detail": "Separate corporate IT, vendor access, and the cardholder data environment into distinct zones with firewalled, logged, and minimal inter-zone traffic."
+    },
+    {
+      "title": "Continuous vendor security assessment",
+      "detail": "Require third parties with network access to meet a minimum security baseline (endpoint protection, patching, phishing training) verified through periodic audits."
+    },
+    {
+      "title": "Employee & vendor phishing-awareness training",
+      "detail": "Regular simulated phishing exercises for both internal staff and third-party vendors with network access, since the initial breach vector was a phishing email."
+    }
+  ],
+  "dataProtectionCompliance": {
+    "framework": "PCI-DSS (Payment Card Industry Data Security Standard)",
+    "gaps": [
+      "Requirement 1 (network segmentation/firewalling): the vendor-to-POS pathway violated segmentation expectations for the cardholder data environment.",
+      "Requirement 8 (strong access control): single-factor authentication on a portal with a path to cardholder systems fell short of access-control expectations later tightened industry-wide.",
+      "Requirement 10 (monitoring & logging): alerts existed but the response process failed to act on them within a reasonable window.",
+      "Requirement 3 (protect stored cardholder data): plaintext card data in POS memory, even briefly, was the exact gap the RAM scraper exploited."
+    ],
+    "regulatoryAftermath": "Target paid a $18.5 million multistate settlement (2017) and separate settlements with payment networks, and testified before the U.S. Senate Commerce Committee, which used the case to push broader adoption of EMV chip cards in the US."
+  }
+}

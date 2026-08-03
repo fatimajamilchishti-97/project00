@@ -1,0 +1,14 @@
+{
+  "name": "Target Corporation",
+  "sector": "Retail (Big-box general merchandise)",
+  "incidentYear": 2013,
+  "scale": "1,797 stores (US) at the time of the breach, ~40 million payment cards and 70 million customer records affected",
+  "summary": "Between November 27 and December 15, 2013, attackers stole payment card data and personal information for tens of millions of Target customers by pivoting from a third-party HVAC vendor's stolen credentials into Target's internal network, then onto point-of-sale (POS) terminals.",
+  "infrastructure": {
+    "corporateNetwork": "Centralized Windows-based corporate network connecting HQ, vendor portals, and store networks over an internal VPN/extranet.",
+    "vendorAccess": "Third-party vendors (e.g., Fazio Mechanical Services, an HVAC/refrigeration contractor) were granted remote access via Target's Ariba vendor portal for billing, contract submission, and project management.",
+    "posEnvironment": "POS terminals in all stores ran BlackPOS-vulnerable Windows-based systems, connected to a shared internal network segment rather than a fully isolated cardholder data environment (CDE).",
+    "segmentation": "Network segmentation between the vendor-facing systems, general corporate network, and the POS/cardholder data environment was insufficient - once inside, attackers could move laterally with limited friction.",
+    "monitoring": "Target operated a FireEye malware-detection system (monitored partly by a Symantec/Target security operations team in Bangalore) that did generate alerts during the intrusion, but the alerts were not acted upon in time."
+  }
+}
